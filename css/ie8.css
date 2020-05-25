@@ -1,0 +1,140 @@
+#menu, #cap, #text, #btn-rotate {
+/*    -moz-opacity: 0.00;
+    -khtml-opacity: 0.00;
+    opacity: 0.00;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=0);
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+    filter:alpha(opacity=0);*/
+}
+.cosmic-black {
+    background-image: url("images/color_ie/cosmic_black.png");
+}
+.mineral-grey {
+    background-image: url("images/color_ie/mineral_grey.png");
+}
+.ash-beige {
+    background-image: url("images/color_ie/ash_beige.png");
+}
+.titanium-silver {
+    background-image: url("images/color_ie/titanium_silver.png");
+}
+.splash-white {
+    background-image: url("images/color_ie/splash_white.png");
+}
+.nautilus-blue {
+    background-image: url("images/color_ie/nautilus_blue.png");
+}
+.tundra-green {
+    background-image: url("images/color_ie/tundra_green.png");
+}
+.vanatian-red {
+    background-image: url("images/color_ie/vanatian_red.png");
+}
+.obsidian-gray {
+      background-image: url("images/color_ie/obsidian_gray.png");
+}
+.fjord-blue {
+    background-image: url("images/color_ie/fjord_blue.png");
+} 
+/*end icon image */
+
+.jquery-ui-like {
+-moz-opacity: 0.60;
+-khtml-opacity: 0.60;
+opacity: 0.60;
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=60);
+filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+filter:alpha(opacity=60);
+}
+
+
+#ctrl-color {
+	right:48px !important;
+}
+
+#ctrl-color ul li a:link, #ctrl-color ul li a:visited {
+	display:block;
+}
+
+#ctrl-color ul li a.active-color, #ctrl-color ul li a:hover {
+    padding-left: 10px !important;
+    padding-top: 6px !important;
+	width: 14px !important;
+    height: 14px !important;
+    background-size: 14px 14px !important;
+}
+
+/* ie image */
+div[id^="hotspot_"] { 
+    background-image: url("images/hotspot_ie.png");  
+}
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+    background-image: url('../img/close_ie.png');
+}
+#text-logo {
+    background-image: url("../img/text-logo_ie.png"); 
+}
+
+#ctrl-cab-crew {
+    top: 50px;
+    background-image: url("images/cab_crew_ie.png");
+} 
+#ctrl-cab-extended { 
+    background-image: url("images/cab_extended_ie.png");
+}  
+#ctrl-cab-single { 
+    background-image: url("images/cab_regular_ie.png");
+}
+.bg-warehouse {
+    background-image: url("images/wallpaper_black_ie.png"); 
+}
+.bg-concrete {
+    background-image: url("images/wallpaper_white_ie.png"); 
+}
+#text-color {
+    background-image: url("images/color_ie.png");
+}
+.img-button-hotspot-on {
+    background-image: url('images/hotspot_menu_on_ie.png'); 
+}
+.img-button-hotspot-off {
+    background-image: url('images/hotspot_menu_off_ie.png'); 
+}
+#ctrl-next {
+    background-image: url('images/next_ie.png'); 
+} 
+#ctrl-back {
+    background-image: url('images/back_ie.png'); 
+}
+
+
+/* CREW */
+.text-detail-crew-sd {
+    background-image: url('images/textdetail_ie.png');
+    background-position: 0 -28px;
+}
+.text-detail-crew-ls {
+    background-image: url('images/textdetail_ie.png');
+    background-position: 0 -42px;
+}
+/* EXTEND */
+.text-detail-extend {
+    background-image: url('images/textdetail_ie.png'); 
+    background-position: 0 -14px;
+}
+/* REGULAR */
+.text-detail-regular {
+    background-image: url('images/textdetail_ie.png');
+    background-position: 0 0;
+}
+
+.img-button-grade-standard {
+    background-image: url('images/grade_standard_ie.png'); 
+}
+.img-button-grade-ls {
+    background-image: url('images/grade_ls_ie.png'); 
+} 
+.img-button-grade-ls-only {
+    background-image: url('images/grade_ls_only_ie.png') !important; 
+}
