@@ -1,0 +1,41 @@
+.jquery-ui-like {
+ 
+    position:absolute;
+    
+    text-align:center;
+    font-family: "verdana";
+    color:#000;
+    font-size:10px;
+    top: 50%;
+    left: 50%;
+    margin-top:-13px;
+    margin-left:-90px;
+ 
+ 
+    overflow: hidden;
+    width:180px;
+    z-index:100001;
+    line-height:17px;
+	
+	
+
+	
+}
+.jquery-ui-like div {
+      background-color: #000;
+    height: 16px;
+    opacity: 0.5;
+    position: relative;
+}
+
+.jquery-ui-like div span {
+/*    left: 0;
+    position: absolute;
+    z-index:999999;*/
+}
+
+.percent {
+     position: relative;
+     top:-1px;
+     color:#FFF;
+}

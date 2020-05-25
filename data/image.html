@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+
+
+    <style>
+        html,
+        body {
+            width: 700px;
+            height: 467px;
+            overflow: hidden;
+        }
+        
+        body {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+        
+        .show-image {
+            width: 700px;
+            height: 467px;
+        }
+        
+        .hide-link {
+            visibility: hidden;
+        }
+        
+        .none-link {
+            cursor: default !important;
+            opacity: 0.5;
+            display: block;
+        }
+        
+        .control {
+            position: absolute;
+            top: 189px;
+            width: 100%;
+        }
+        
+        .control div[class^="control-"] {
+            width: 40px;
+            height: 85px;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .control div[class^="control-"] a {
+            display: block;
+            text-indent: -9999px;
+            width: 58px;
+            height: 100%;
+        }
+        
+        .control .control-next {
+            background-image: url('images/next.png');
+            background-size:cover;
+            right: 30px;
+            float: right;
+        }
+         
+        .control .control-back {
+            background-image: url('images/back.png');
+            background-size:cover;
+            left: 30px;
+            float: left;
+        }
+         
+    </style>
+    <!--[if lt IE 9]>
+       <style> 
+           .control .control-next {
+                background-image: url('images/next_ie.png'); 
+            } 
+            .control .control-back {
+                background-image: url('images/back_ie.png'); 
+            }
+       </style>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $.fn.preload = function () {
+            this.each(function () {
+                var newObject = $('<img />', {
+                    src: imagePath + imageUrl['imagefile' + imageIndex] + imageExtension,
+                });
+
+
+            });
+
+        };
+
+        function getUrlVars() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        var imageUrl = getUrlVars();
+        var imageCount = imageUrl.length - 1;
+        var imageIndex = 0;
+        var imagePath;
+        var imageExtension = '.jpg?v=6';
+        $(function () { 
+
+            //custom code
+            //imagePath = '../img/hotspot/' + imageUrl.model + '/' + imageUrl.mode + '/' + imageUrl.size + '/';
+            var sizeFlie = "Retina_1400x933";
+            if(imageUrl.size == "Normal"){
+                var sizeFlie = "Normal_700x467";
+            }
+            if(imageUrl.model == 'GEXP_RHD_CREW_RBD')  {
+                imagePath = '../img/hotspot/GEXP_RHD_CREW_RBD/' + imageUrl.mode + '/' + sizeFlie + '/';
+            }else{ //GEXP_RHD_EXTENDED_RBD
+                imagePath = '../img/hotspot/GEXP_RHD_EXTENDED_RBD/' + imageUrl.mode + '/' + sizeFlie + '/'; 
+            }  
+
+
+            if (typeof imageUrl.imagefile0 != "undefined") {
+
+                imageCount = 1;
+                $(imageUrl.imagefile0).preload();
+            }
+
+
+            if (typeof imageUrl.imagefile1 != "undefined") {
+                imageCount += 1;
+                $(imageUrl.imagefile1).preload();
+            }
+
+
+ 
+            if (imageCount == 1) {
+                $('.control').css('display', 'none');
+            }
+
+            var $showImage = $('.show-image');
+            $showImage.attr('src', imagePath + imageUrl['imagefile' + imageIndex] + imageExtension);
+
+
+
+            $.fn.btnNext = function () {
+
+                var click = this.click(function () {
+
+                    if (imageIndex < imageCount - 1) {
+                        $showImage.attr('src', imagePath + imageUrl['imagefile' + (++imageIndex)] + imageExtension);
+                    }
+
+                    if (imageIndex == imageCount - 1) {
+                        $(this).addClass('hide-link');
+                        $('.control-back').removeClass('hide-link');
+                    }
+                });
+
+                return this;
+            };
+
+            $.fn.btnBack = function () {
+
+                var click = this.click(function () {
+
+                    if ((imageIndex >= 1) && (imageIndex <= imageCount - 1)) {
+                        $showImage.attr('src', imagePath + imageUrl['imagefile' + (--imageIndex)] + imageExtension);
+                    }
+
+                    if (imageIndex == 0) {
+                        $(this).addClass('hide-link');
+                        $('.control-next').removeClass('hide-link');
+                    }
+                });
+
+                return this;
+            }
+
+            $('.control-next').btnNext();
+            $('.control-back').btnBack();
+        });
+    </script>
+
+
+</head>
+
+
+
+<body>
+    <img src="" class="show-image" />
+
+
+    <div class="control">
+
+
+        <div class="control-back hide-link">
+            <a href="javascript:void(0);" title="Back">Back</a>
+        </div>
+
+        <div class="control-next">
+            <a href="javascript:void(0);" title="Next">Next</a>
+        </div>
+    </div>
+</body>
+
+</html>

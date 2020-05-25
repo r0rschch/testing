@@ -1,0 +1,12 @@
+var animIntervalUp;
+var animIntervalDown;
+var $hs = $('.hotspot');
+var isPan = false;
+var reelFrame = 3;
+var $panzoom = null;
+var _isZoomMode = false;
+var setting_show_hotspot = true;
+var setting_animate_hotspot = false;
+var setting_app_width = 962;
+var setting_app_height = 542;
+var setting_diff_pos = 0;
