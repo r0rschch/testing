@@ -1,0 +1,220 @@
+<krpano version="1.16.5" onstart="action(start);">
+    <action name="start"> 
+        loadscene(RBA_BG_B, null, MERGE); 
+    </action>
+    <!-- PLUGIN INCLUDE      
+<plugin
+    name="editor"
+    url="plugins/editor.swf"
+    align="top"
+    keep="true" />
+<plugin
+    name="options"
+    url="plugins/options.swf"
+    keep="true" />   -->  
+    <!-- set the cursor after the xml was loaded
+	<events onxmlcomplete="action(cursor);" />
+
+    <action name="cursor">
+            set(control.mousetype, moveto);
+            set(cursors.url, /images/icon.png);
+            set(cursors.type, drag);
+            set(cursors.move, null);
+            set(cursors.drag, null);
+    </action>-->
+
+    <!-- showtext styles -->
+    <textstyle name="DEFAULT" font="Arial" fontsize="12" border="false" background="false" textcolor="0xFFFFFF" effect="glow(0x000000,0.7,4,2);dropshadow(2,45,0x000000,3,1);" />
+
+    <!-- smalltext styles -->
+    <textstyle name="smalltext" font="Arial" fontsize="10" border="false" background="false" textcolor="0xFFFFFF" effect="glow(0x000000,0.7,4,2);dropshadow(2,45,0x000000,3,1);" />
+
+    <!-- text styles for startup text -->
+    <textstyle name="infostyle" origin="center" textalign="center" edge="bottom" background="false" border="false" font="Arial" fontsize="40" textcolor="0xFFFFFF" bold="false" effect="glow(0xFFFFFF,0.7,4,2);glow(0x000000,1,4,2);dropshadow(3,45,0x000000,2,0.6);" showtime="5.0" fadetime="1.0" />
+    <action name="interruptAnimation">
+        <!--Raise sequence stopper and wait sequence time to break the delayed calls-->
+        ifnot (stopSequence === undefined, set(stopSequence,true); wait(0); ); </action>
+
+    <!-- direction/zoom buttons -->
+    <plugin name="btn_start" url="img/button/btn_start.png" y="0" x="-158" keep="true" visible="true" enabled="false" origin="bottom" edge="bottom" />
+    <plugin name="btn_end" url="img/button/btn_end.png" y="0" x="168" keep="true" visible="true" enabled="false" origin="bottom" edge="bottom" />
+    <plugin name="in" url="img/button/btn_plus.png" y="0" x="-126" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Zoom In);" ondown="set(movevectorz,-1);" onup="set(movevectorz,0);" />
+    <plugin name="out" url="img/button/btn_minus.png" y="0" x="-82" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Zoom Out);" ondown="set(movevectorz,+1);" onup="set(movevectorz,0);" />
+    <plugin name="left" url="img/button/btn_left.png" y="0" x="-46" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Look Left);" ondown="set(movevectorx,-1);" onup="set(movevectorx,0);" />
+    <plugin name="right" url="img/button/btn_right.png" y="0" x="-18" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Look Right);" ondown="set(movevectorx,+1);" onup="set(movevectorx,0);" />
+    <plugin name="up" url="img/button/btn_up.png" y="0" x="+13" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Look Up);" ondown="set(movevectory,-1);" onup="set(movevectory,0);" />
+    <plugin name="down" url="img/button/btn_down.png" y="0" x="+46" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Look Down);" ondown="set(movevectory,+1);" onup="set(movevectory,0);" />
+    <plugin name="btn_autorotate" url="img/button/btn_autorotate.png" y="0" x="87" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Auto Rotate On/Off);" onclick="switch(autorotate.enabled); set(autorotate.waittime,0);" />
+
+    <!-- events for fullscreen button move quality change with Flash Player 9 & 10 -->
+    <events onenterfullscreen="set(plugin[btn_view_fullscreen].visible,false); set(plugin[btn_exit_fullscreen].visible,true);  set(display.movequality,LOW);  set(display.movequality10,LOW);" onexitfullscreen="set(plugin[btn_view_fullscreen].visible,true);  set(plugin[btn_exit_fullscreen].visible,false); set(display.movequality,HIGH); set(display.movequality10,HIGH);" />
+
+    <!-- view fullscreen button -->
+    <plugin name="btn_view_fullscreen" url="img/button/btn_view_fullscreen.png" y="0" x="134" keep="true" visible="true" enabled="true" origin="bottom" edge="bottom" onhover="showtext(View Fullscreen);" onclick="switch(fullscreen);" />
+
+    <!-- exit fullscreen button -->
+    <plugin name="btn_exit_fullscreen" url="img/button/btn_exit_fullscreen.png" y="0" x="134" keep="true" visible="false" enabled="true" origin="bottom" edge="bottom" onhover="showtext(Exit Fullscreen);" onclick="switch(fullscreen);" />
+
+  
+      <scene name="RBA_BG_A"> 
+        <progress showload="bar(center,180, 11, 0, 40, solid, 0xFFFFFF, 0x000000, 0x000000, 0x000000, 0, 0xFFFFFF, 0)" showwait="loopings(0xFFFFFF, 15, 15, 0, 0, 0xFFFFFF, 0)" />
+
+        <!-- Display Settings -->
+   <display flash10="on" movequality="high" stillquality="high" movequality10="high" stillquality10="high" details="32" fps="60" />
+        <view hlookat="0" vlookat="13" fovtype="HFOV" fov="84" fovmin="60" fovmax="84" limitview="range" vlookatmin="-90" vlookatmax="+90" fisheye="0.75" fisheyefovlink="3" />
+        <autorotate enabled="false" waittime="7" accel="5" speed="5" horizon="13" tofov="84" />
+
+
+    <!-- view settings -->
+    <!-- <view hlookat="0" vlookat="0" maxpixelzoom="1.0" fovmax="150" limitview="auto" /> --> 
+    <preview url="img/interior/A/Dmax_MY18_GEXP_RHD_BG_A.tiles/preview.jpg" />
+
+	<image type="CUBE" multires="true" tilesize="512">
+		<level tiledimagewidth="1910" tiledimageheight="1910">
+			<cube url="img/interior/A/Dmax_MY18_GEXP_RHD_BG_A.tiles/mres_%s/l2/%v/l2_%s_%v_%h.jpg" />
+		</level>
+		<level tiledimagewidth="1024" tiledimageheight="1024">
+			<cube url="img/interior/A/Dmax_MY18_GEXP_RHD_BG_A.tiles/mres_%s/l1/%v/l1_%s_%v_%h.jpg" />
+		</level>
+
+		<mobile>
+			<cube url="img/interior/A/Dmax_MY18_GEXP_RHD_BG_A.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image> 
+
+
+
+
+ 
+    <hotspot name="s5" url="img/hotspot.png" 
+             ath="-3.145643" atv="28.057635" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Auto_AC|imagefile1=Manual_AC));"
+             /> 
+
+    <hotspot name="s7" url="img/hotspot.png" 
+             ath="-1.647813" atv="49.347039" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=4WD_Switch));"
+             />
+
+    <hotspot name="s3" url="img/hotspot.png" 
+             ath="-20.241607" atv="42.5218" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Leather_Seat_Drak_Grey));"
+             />
+
+    <hotspot name="s4" url="img/hotspot.png" 
+             ath="-2.494987" atv="40.474453" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=5_MT|imagefile1=AT_RHD));"
+             /> 
+
+    <hotspot name="s1" url="img/hotspot.png" 
+             ath="21.429593" atv="20.458795" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Audio_Control));"
+             />
+
+    <hotspot name="s8" url="img/hotspot.png" 
+             ath="-21.849618" atv="20.822833" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Storage));"
+             />
+
+    <hotspot name="s9" url="img/hotspot.png" 
+             ath="6.748309" atv="20.169741" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=DVD_Audio_7in));"
+             />
+
+    <hotspot name="s10" url="img/hotspot.png" 
+             ath="26.158744" atv="11.813355" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Instrument_panel));"
+             />
+
+    <hotspot name="s11" url="img/hotspot.png" 
+             ath="252.550373" atv="-36.838924" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Roof_mounted_Speaker));"
+             />   
+     
+    <hotspot name="s12" url="img/hotspot.png" 
+        ath="6.155276" atv="84.041153" zorder="5" width="36" height="36"  
+        onclick="js(showFancyBox(imagefile0=12_Rear_USB_Port));"
+        />
+
+    </scene>
+    
+    
+    
+          <scene name="RBA_BG_B"> 
+        <progress showload="bar(center,180, 11, 0, 40, solid, 0xFFFFFF, 0x000000, 0x000000, 0x000000, 0, 0xFFFFFF, 0)" showwait="loopings(0xFFFFFF, 15, 15, 0, 0, 0xFFFFFF, 0)" />
+
+        <!-- Display Settings -->
+   <display flash10="on" movequality="high" stillquality="high" movequality10="high" stillquality10="high" details="32" fps="60" />
+        <view hlookat="0" vlookat="13" fovtype="HFOV" fov="84" fovmin="60" fovmax="84" limitview="range" vlookatmin="-90" vlookatmax="+90" fisheye="0.75" fisheyefovlink="3" />
+        <autorotate enabled="false" waittime="7" accel="5" speed="5" horizon="13" tofov="84" />
+
+    <!-- view settings -->
+    <!-- <view hlookat="0" vlookat="0" maxpixelzoom="1.0" fovmax="150" limitview="auto" /> --> 
+    <preview url="img/interior/B/Dmax_MY18_GEXP_RHD_BG_B.tiles/preview.jpg" />
+
+	<image type="CUBE" multires="true" tilesize="512">
+		<level tiledimagewidth="1910" tiledimageheight="1910">
+			<cube url="img/interior/B/Dmax_MY18_GEXP_RHD_BG_B.tiles/mres_%s/l2/%v/l2_%s_%v_%h.jpg" />
+		</level>
+		<level tiledimagewidth="1024" tiledimageheight="1024">
+			<cube url="img/interior/B/Dmax_MY18_GEXP_RHD_BG_B.tiles/mres_%s/l1/%v/l1_%s_%v_%h.jpg" />
+		</level>
+
+		<mobile>
+			<cube url="img/interior/B/Dmax_MY18_GEXP_RHD_BG_B.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+              
+
+    <hotspot name="s5" url="img/hotspot.png" 
+             ath="-3.145643" atv="28.057635" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Auto_AC|imagefile1=Manual_AC));"
+             /> 
+
+    <hotspot name="s7" url="img/hotspot.png" 
+             ath="-1.647813" atv="49.347039" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=4WD_Switch));"
+             />
+
+    <hotspot name="s3" url="img/hotspot.png" 
+             ath="-20.241607" atv="42.5218" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Leather_Seat_Drak_Grey));"
+             />
+
+    <hotspot name="s4" url="img/hotspot.png" 
+             ath="-2.494987" atv="40.474453" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=5_MT|imagefile1=AT_RHD));"
+             /> 
+
+    <hotspot name="s1" url="img/hotspot.png" 
+             ath="21.429593" atv="20.458795" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Audio_Control));"
+             />
+
+    <hotspot name="s8" url="img/hotspot.png" 
+             ath="-21.849618" atv="20.822833" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Storage));"
+             />
+
+    <hotspot name="s9" url="img/hotspot.png" 
+             ath="6.748309" atv="20.169741" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=DVD_Audio_7in));"
+             />
+
+    <hotspot name="s10" url="img/hotspot.png" 
+             ath="26.158744" atv="11.813355" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Instrument_panel));"
+             />
+
+    <hotspot name="s11" url="img/hotspot.png" 
+             ath="252.550373" atv="-36.838924" zorder="5" width="36" height="36" 
+             onclick="js(showFancyBox(imagefile0=Roof_mounted_Speaker));"
+             /> 
+    
+    <hotspot name="s12" url="img/hotspot.png" 
+        ath="6.155276" atv="84.041153" zorder="5" width="36" height="36"  
+        onclick="js(showFancyBox(imagefile0=12_Rear_USB_Port));"
+        />     
+
+    </scene>    
+</krpano>
